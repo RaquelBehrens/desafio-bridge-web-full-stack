@@ -1,5 +1,7 @@
 # desafio-web-full-stack
 
+Vídeo mostrando o resultado final: https://youtu.be/PshVgl6sY44
+
 <h2>Passos Iniciais</h2>
 
 1. Clone o Repositório;
