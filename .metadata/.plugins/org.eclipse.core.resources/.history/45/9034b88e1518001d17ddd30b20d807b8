@@ -1,0 +1,76 @@
+package backend.springboot.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+
+@Entity
+@Table(name = "TopNumbers")
+public class TopNumber {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int originalNumber;
+	
+	@Column(name="result")
+	private int resultNumber;
+	
+	public TopNumber() {
+		System.out.println("alou");
+		System.out.println(this.originalNumber);
+	}
+	
+	public TopNumber(String originalNumber) {
+		super();
+		System.out.println("alo");
+		System.out.println("chegou no backend "+originalNumber);
+		this.originalNumber = Integer.parseInt(originalNumber);
+		this.resultNumber = this.calculateResultNumber(this.originalNumber);
+	}
+
+	public int getOriginalNumber() {
+		return this.originalNumber;
+	}
+	
+	public void setOriginalNumber(int number) {
+		this.originalNumber = number;
+	}
+	
+	public int getResultNumber() {
+		return this.resultNumber;
+	}
+	
+	public void setResultNumber(int number) {
+		this.resultNumber = number;
+	}
+	
+	public int calculateResultNumber(int numero) {
+		int sum = 0;
+		int n = this.sumDivisorsOfNumber(numero);
+		int n1;
+		
+		for (int i = numero-1; i >= 0; i--) {
+			n1 = this.sumDivisorsOfNumber(i);
+			if (n == n1) {
+				sum += 1;
+			}
+			n = n1;
+		}
+		return sum;
+	}
+	
+	public int sumDivisorsOfNumber(int numero) {
+		int sum = 0;
+		for (int i = 1; i <= Math.sqrt(numero); i++) {
+			if (numero % i == 0) {
+				sum += 1;
+			} else {
+				sum += 2;
+			}
+		}
+		return sum;
+	}
+}

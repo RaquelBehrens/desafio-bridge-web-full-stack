@@ -1,0 +1,58 @@
+package backend.springboot.controller;
+
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import backend.springboot.exception.ResourceNotFoundException;
+import backend.springboot.model.TopNumber;
+import backend.springboot.repository.TopNumberRepository;
+
+@CrossOrigin(origins="http://localhost:3000")
+@RestController
+@RequestMapping("/api/v1/")
+public class TopNumberController {
+
+	@Autowired
+	private TopNumberRepository topNumberRepository;
+	
+	//find all TopNumbers
+	@GetMapping("/topnumbers")
+	public List<TopNumber> getAllTopNumbers() {
+		return topNumberRepository.findAll();
+	}
+	
+	@PostMapping("/topnumbers")
+	public TopNumber createTopNumber(@RequestBody TopNumber topNumber) {
+		topNumber.calculateResultNumber();
+		return topNumberRepository.save(topNumber);
+	}
+	
+	@GetMapping("/topnumbers/{id}")
+	public ResponseEntity<TopNumber> getTopNumberById(@PathVariable Integer number) {
+		TopNumber topNumber = topNumberRepository.findByOriginalNumber(number);
+		return ResponseEntity.ok(topNumber);
+	
+	}
+	
+	@DeleteMapping("/topnumbers/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteTopNumber(@PathVariable Integer id) {
+		TopNumber topNumber = topNumberRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("O numero ainda nao foi calculado")); 
+		topNumberRepository.delete(topNumber);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+
+	}
+}

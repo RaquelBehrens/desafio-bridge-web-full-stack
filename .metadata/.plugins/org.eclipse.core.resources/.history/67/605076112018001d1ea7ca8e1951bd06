@@ -1,0 +1,11 @@
+package backend.springboot.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import backend.springboot.model.TopNumber;
+
+@Repository
+public interface TopNumberRepository extends JpaRepository<TopNumber, Integer> {
+	
+	TopNumber findByOriginalNumber(int originalNumber);
+}
