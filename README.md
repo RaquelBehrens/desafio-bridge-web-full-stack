@@ -4,35 +4,36 @@
 
 1. Clone o Repositório;
 2. Extraia os arquivos de react-frontend.tar.gz:
-  <p>$ tar -xzf react-frontend.tar.gz</p>
+    <p>$ tar -xzf react-frontend.tar.gz</p>
   
 3. Configure o ambiente.
 
 <h2>Configurando o ambiente</h2>
 
 1. Instalar o Eclipse:
-  <p>$ sudo snap install eclipse --classic</p>
+    <p>$ sudo snap install eclipse --classic</p>
   
 2. Instalar o Visual Studio Code:
-  <p>$ sudo snap install code --classic</p>
+    <p>$ sudo snap install code --classic</p>
   
 3. Instalar Java:
-  <p>$ sudo apt install -y openjdk-18-jdk</p>
-  <p>$ sudo apt install -y openjdk-18-jre</p>
+    <p>$ sudo apt install -y openjdk-18-jdk</p>
+    <p>$ sudo apt install -y openjdk-18-jre</p>
   
   3.1 Abrir novo terminal e:
-    <p>$ sudo apt update</p>
-    <p>$ wget https://download.oracle.com/java/18/latest/jdk-18_linux-x64_bin.deb</p>
-    <p>$ sudo apt install ./jdk-18_linux-x64_bin.deb</p>
+  
+    $ sudo apt update
+    $ wget https://download.oracle.com/java/18/latest/jdk-18_linux-x64_bin.deb
+    $ sudo apt install ./jdk-18_linux-x64_bin.deb
 
-    <p>$ cat <<EOF | sudo tee /etc/profile.d/jdk18.sh</p>
-      <p>> export JAVA_HOME=/usr/lib/jvm/jdk-18</p>
-      <p>> export PATH=\$PATH:\$JAVA_HOME/bin</p>
-      <p>> EOF</p>
+    $ cat <<EOF | sudo tee /etc/profile.d/jdk18.sh
+      > export JAVA_HOME=/usr/lib/jvm/jdk-18
+      > export PATH=\$PATH:\$JAVA_HOME/bin
+      > EOF
 
-    <p>$ source /etc/profile.d/jdk18.sh</p>
+    $ source /etc/profile.d/jdk18.sh
 
-    <p>$ java -version</p>
+    $ java -version
 
 4. Abrir o eclipse, abrir o marketplace e instalar 'spring tool 3'
 
@@ -40,6 +41,7 @@
    <p>5.1 Open project from file system -> selecionar arquivo 'springboot-backend' do diretório</p>
    
 6. Instalar o MySql:
+    
     <p>$ sudo apt update</p>
     <p>$ sudo apt install mysql-server</p>
     <p>$ sudo systemctl start mysql.service</p>
