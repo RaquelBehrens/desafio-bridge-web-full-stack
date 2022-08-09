@@ -1,13 +1,19 @@
 package net.javaguides.springboot.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import net.javaguides.springboot.exception.ResourceNotFoundException;
 import net.javaguides.springboot.model.TopNumber;
@@ -30,5 +36,22 @@ public class TopNumberController {
 	@PostMapping("/topnumbers")
 	public TopNumber createTopNumber(@RequestBody TopNumber topNumber) {
 		return topNumberRepository.save(topNumber);
+	}
+	
+	@GetMapping("/topnumbers/{id}")
+	public ResponseEntity<TopNumber> getTopNumberById(@PathVariable Integer id) {
+		TopNumber topNumber = topNumberRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("O numero ainda nao foi calculado"));
+		return ResponseEntity.ok(topNumber);
+	
+	}
+	
+	@DeleteMapping("/topnumbers/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteTopNumber(@PathVariable Integer id) {
+		TopNumber topNumber = topNumberRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("O numero ainda nao foi calculado")); 
+		topNumberRepository.delete(topNumber);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+
 	}
 }

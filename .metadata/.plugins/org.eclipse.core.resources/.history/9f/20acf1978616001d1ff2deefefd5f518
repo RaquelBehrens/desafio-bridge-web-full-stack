@@ -1,0 +1,23 @@
+package net.javaguides.springboot.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.javaguides.springboot.model.TopNumber;
+import net.javaguides.springboot.repository.TopNumberRepository;
+
+@RestController
+@RequestMapping("/api/v1/")
+public class TopNumberController {
+
+	@Autowired
+	private TopNumberRepository topNumberRepository;
+	
+	//find all TopNumbers
+	public List<TopNumber> getAllTopNumbers() {
+		return topNumberRepository.findAll();
+	}
+}
