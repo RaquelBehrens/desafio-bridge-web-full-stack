@@ -37,7 +37,7 @@
 4. Abrir o eclipse, abrir o marketplace e instalar 'spring tool 3'
 
 5. No eclipse:
-   5.1 Open project from file system -> selecionar arquivo 'springboot-backend' do diretório
+   <p>5.1 Open project from file system -> selecionar arquivo 'springboot-backend' do diretório</p>
    
 6. Instalar o MySql:
     <p>$ sudo apt update</p>
