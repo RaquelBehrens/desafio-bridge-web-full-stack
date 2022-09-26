@@ -5,8 +5,8 @@ Vídeo mostrando o resultado final: https://youtu.be/PshVgl6sY44
 <h2>Passos Iniciais</h2>
 
 1. Clone o Repositório;
-2. Extraia os arquivos de react-frontend.tar.gz:
-    <p>$ tar -xzf react-frontend.tar.gz</p>
+2. Dentro da pasta react-frontend:
+    <p>$ npm install</p>
   
 3. Configure o ambiente.
 
